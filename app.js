@@ -4,12 +4,10 @@ const blogRoutes = require("./routes/blogRoutes");
 
 const app = express();
 
-const dbURI =
-  "mongodb+srv://admin:admin@cluster.eggyf.mongodb.net/digital-diary?retryWrites=true&w=majority";
-
+mongoose.set("strictQuery", false);
 mongoose
-  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => app.listen(3000))
+  .connect(process.env.DB_URI)
+  .then((result) => app.listen(process.env.PORT))
   .catch((error) => {
     console.log(error);
   });
